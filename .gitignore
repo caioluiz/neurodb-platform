@@ -1,0 +1,22 @@
+# Ambiente local e segredos
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Arquivos de configuração locais
+docker-compose.yml
+docker-compose.override.yml
+docker-compose.*.yml
+*.local
+*.secret
+*.pem
+*.key
+
+# Dados locais
+phase1_warehouse/sample_data/
