@@ -179,56 +179,12 @@ Uma camada onde você (ou qualquer pesquisador) faz uma pergunta em linguagem na
 4. Backend executa a query (com validação de segurança — nunca executar query gerada por LLM sem sanitização/allowlist)
 5. Resultado volta formatado, opcionalmente com o LLM explicando o resultado em linguagem natural
 
-### Stack sugerida
+### Stack
 - Backend: **FastAPI**
 - LLM: API da Claude com **tool use** (function calling) — você define as "ferramentas" como `query_sql` e `query_graph`
 - Frontend simples de demonstração: **Streamlit** (rápido de montar, ótimo pra gravar um vídeo de demo pro portfólio)
 
----
-
-## Estrutura de Repositório Sugerida
-
 ```
-neurodb-platform/
-├── README.md
-├── docs/
-│   └── architecture.md
-├── phase1_warehouse/
-│   ├── schema/          # DDL scripts
-│   ├── etl/              # scripts Python de parsing/load
-│   └── notebooks/        # exploração inicial dos dados
-├── phase2_knowledge_graph/
-│   ├── extraction/       # pipeline de extração via LLM
-│   └── schema/
-├── phase3_nl_query/
-│   ├── backend/
-│   └── frontend/
-└── requirements.txt
-```
-
----
-
-## Primeiros Passos (próximas 1-2 semanas)
-
-1. [ ] Criar o repositório no GitHub com a estrutura acima
-2. [ ] Escolher **um único dataset pequeno** para começar (recomendo um subset do PhysioNet — é o mais simples de baixar e já vem bem documentado)
-3. [ ] Subir um PostgreSQL local (Docker é o mais prático) e rodar o DDL da Fase 1
-4. [ ] Escrever o primeiro script Python com MNE-Python que lê **um único arquivo EEG** e imprime seus metadados no terminal
-5. [ ] Evoluir esse script para popular as tabelas `datasets`, `subjects`, `sessions` e `recordings` com esse único arquivo
-6. [ ] Só depois disso automatizar para múltiplos arquivos/sujeitos
-
-Começar pequeno (um arquivo, um sujeito) evita que você trave nas primeiras semanas tentando resolver o pipeline inteiro de uma vez.
-
----
-
-## Onde a IA entra ao longo do projeto
-
-- **Normalização de metadados:** datasets diferentes nomeiam canais e eventos de formas diferentes — um LLM pode sugerir o mapeamento correto
-- **Documentação automática:** gerar descrições legíveis de cada dataset importado
-- **Extração de entidades** (Fase 2): o núcleo do Knowledge Graph
-- **Geração de queries** (Fase 3): o núcleo da camada de linguagem natural
-- **Apoio no dia a dia:** debugging de queries SQL/Cypher, revisão de código, e até para escrever o README do projeto de forma mais profissional
-
 ---
 
 ## Recursos Úteis
